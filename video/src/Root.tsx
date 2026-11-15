@@ -1,6 +1,8 @@
 import React from "react";
 import { Composition } from "remotion";
+import { PhotoShortVideo } from "./components/PhotoShortVideo";
 import { ShortVideo } from "./components/ShortVideo";
+import { PHOTO_SHORTS } from "./data/photoScripts";
 import { FPS, SHORTS } from "./data/scripts";
 
 /**
@@ -21,9 +23,36 @@ const VOICE_COMPS = [
   { id: "Short03-Libet-VoiceB", script: 2, audio: "voice/short03-voiceB.mp3", frames: 1002 },
 ] as const;
 
+/** Фото-версии в стиле видео-образца (полноэкранные картинки + обводка + плашка) */
+const PHOTO_COMPS = [
+  { id: "Photo01-PastLight-VoiceA", photo: 0, audio: "voice/short01-voiceA.mp3", frames: 1446 },
+  { id: "Photo01-PastLight-VoiceB", photo: 0, audio: "voice/short01-voiceB.mp3", frames: 1115 },
+  { id: "Photo02-DarkForest-VoiceA", photo: 1, audio: "voice/short02-voiceA.mp3", frames: 1573 },
+  { id: "Photo03-Libet-VoiceA", photo: 2, audio: "voice/short03-voiceA.mp3", frames: 1197 },
+] as const;
+
 export const RemotionRoot: React.FC = () => {
   return (
     <>
+      {/* Фото-версии по образцу — актуальный стиль */}
+      {PHOTO_COMPS.map((c) => (
+        <Composition
+          key={c.id}
+          id={c.id}
+          component={PhotoShortVideo}
+          durationInFrames={c.frames}
+          fps={FPS}
+          width={1080}
+          height={1920}
+          defaultProps={{
+            script: PHOTO_SHORTS[c.photo].script,
+            images: PHOTO_SHORTS[c.photo].images,
+            captions: PHOTO_SHORTS[c.photo].captions,
+            audioFile: c.audio,
+          }}
+        />
+      ))}
+
       {/* Голосовые версии — готовые к рендеру */}
       {VOICE_COMPS.map((c) => (
         <Composition
