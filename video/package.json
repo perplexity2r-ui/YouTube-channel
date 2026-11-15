@@ -1,0 +1,25 @@
+{
+  "name": "youtube-shorts-remotion",
+  "version": "1.0.0",
+  "private": true,
+  "description": "YouTube Shorts на Remotion: наука / космос / мозг. Вертикаль 1080x1920, процедурная анимация, караоке-субтитры, AI-озвучка.",
+  "scripts": {
+    "studio": "remotion studio src/index.ts",
+    "typecheck": "tsc --noEmit",
+    "render:s1a": "remotion render Short01-PastLight-VoiceA out/short01-voiceA.mp4",
+    "render:s1b": "remotion render Short01-PastLight-VoiceB out/short01-voiceB.mp4"
+  },
+  "dependencies": {
+    "@remotion/cli": "^4.0.0",
+    "@remotion/media-utils": "^4.0.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "remotion": "^4.0.0"
+  },
+  "devDependencies": {
+    "@sparticuz/chromium": "^153.0.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "typescript": "^5.6.0"
+  }
+}
